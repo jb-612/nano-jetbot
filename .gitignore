@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Build output
+# Note: dist/ contains pre-built static files from initial setup
+# dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# Vite
+.vite/
+
+# Logs
+*.log
+logs/
+
+# Claude Code local settings
+.claude/settings.local.json
+CLAUDE.local.md
