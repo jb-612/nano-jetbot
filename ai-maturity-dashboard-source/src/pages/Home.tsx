@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart3, TrendingUp, ArrowRight } from 'lucide-react';
+import { BarChart3, TrendingUp, Bot, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export const Home: React.FC = () => {
@@ -15,7 +15,7 @@ export const Home: React.FC = () => {
             <h1 className="text-4xl font-bold mb-2 text-gray-900 dark:text-white">Amdocs AI Fitness</h1>
             <p className="text-gray-500 text-lg mb-16">Agentic AI Progress Status</p>
 
-            <div className="grid grid-cols-2 gap-8 w-full max-w-5xl px-4">
+            <div className="grid grid-cols-3 gap-8 w-full max-w-5xl px-4">
                 {/* Maturity Dashboard Card */}
                 <div
                     onClick={() => navigate('/dashboard')}
@@ -77,6 +77,37 @@ export const Home: React.FC = () => {
 
                     <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
                         <ArrowRight className="w-6 h-6 text-green-500" />
+                    </div>
+                </div>
+
+                {/* Robot Digital Twin Card */}
+                <div
+                    onClick={() => navigate('/robot/viewer')}
+                    className="group relative bg-white dark:bg-gray-800 rounded-lg p-8 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-100 dark:border-gray-700"
+                >
+                    <div className="absolute left-0 top-6 bottom-6 w-1 bg-purple-500 rounded-r"></div>
+
+                    <div className="flex justify-between items-start mb-6">
+                        <div className="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                            <Bot className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+                        </div>
+                    </div>
+
+                    <h2 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                        Robot Digital Twin
+                    </h2>
+
+                    <div className="mb-4 bg-gray-50 dark:bg-gray-900/50 rounded p-2 inline-block">
+                        <span className="text-sm text-gray-500 dark:text-gray-400 mr-2">Components:</span>
+                        <span className="font-bold text-purple-600 dark:text-purple-400">11 Components</span>
+                    </div>
+
+                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-8">
+                        Explore the NVIDIA Jetson Nano JetBot in 3D. Inspect parts, test connectivity, control movement, and browse the API documentation.
+                    </p>
+
+                    <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                        <ArrowRight className="w-6 h-6 text-purple-500" />
                     </div>
                 </div>
             </div>

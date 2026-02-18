@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
-import { ChevronRight, ChevronDown, Building2, Layers, ChevronLeft } from 'lucide-react';
+import { ChevronRight, ChevronDown, Building2, Layers, ChevronLeft, Bot, Box, Wifi, Gamepad2, FileCode2 } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ORGANIZATION_DATA, type Division } from '../../types';
+
+const ROBOT_NAV_ITEMS = [
+    { path: '/robot/viewer', label: '3D Viewer', icon: Box },
+    { path: '/robot/connectivity', label: 'Connectivity', icon: Wifi },
+    { path: '/robot/control', label: 'Control', icon: Gamepad2 },
+    { path: '/robot/api', label: 'API Docs', icon: FileCode2 },
+] as const;
 
 export const Sidebar: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
     const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set(['amdocs']));
     const [selectedId, setSelectedId] = useState('amdocs');
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const toggleExpand = (id: string, e: React.MouseEvent) => {
         e.stopPropagation();
@@ -86,6 +96,36 @@ export const Sidebar: React.FC = () => {
             <div className="flex-1 overflow-y-auto py-4">
                 {!collapsed && renderItem(ORGANIZATION_DATA)}
             </div>
+
+            {/* Robot Digital Twin Navigation */}
+            {!collapsed && (
+                <div className="border-t border-gray-200 dark:border-gray-700 py-4">
+                    <div className="flex items-center gap-2 px-4 mb-3">
+                        <Bot className="w-4 h-4 text-purple-500" />
+                        <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                            Robot Digital Twin
+                        </span>
+                    </div>
+                    {ROBOT_NAV_ITEMS.map((item) => {
+                        const isActive = location.pathname === item.path;
+                        const Icon = item.icon;
+                        return (
+                            <div
+                                key={item.path}
+                                onClick={() => navigate(item.path)}
+                                className={`flex items-center gap-2 px-4 py-2 mx-2 rounded-md cursor-pointer transition-colors ${
+                                    isActive
+                                        ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300'
+                                        : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                                }`}
+                            >
+                                <Icon className={`w-4 h-4 ${isActive ? 'text-purple-500' : ''}`} />
+                                <span className="text-sm font-medium">{item.label}</span>
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
 
             <button
                 onClick={() => setCollapsed(!collapsed)}
